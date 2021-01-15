@@ -10,26 +10,8 @@ public class Calculator {
         System.out.println("Введите число в формате 1 + 1 / I + II");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String input = reader.readLine();
-        String[] ar = input.split(" ");
-        if (parse(input).equals("arab")){
-            ArabicNumbers.operations(ar[0],ar[1],ar[2]);
-            }
-        else if(parse(input).equals("roman")){
-            RomanNumbers.operations(ar[0],ar[1],ar[2]);
-            }
-        else{
-            throw new IllegalArgumentException("Неверный формат ввода данных");
+        System.out.println(RomanNumbers.sample(input));
         }
 
-        }
 
-    public static String parse(String input) {
-        String[] ar = input.split(" ");
-        if((Character.isDigit(ar[0].charAt(0))) && (Character.isDigit(ar[2].charAt(0))))
-            return "arab";
-        else if(!(Character.isDigit(ar[0].charAt(0))) && !(Character.isDigit(ar[2].charAt(0))))
-            return  "roman";
-        else
-            throw new IllegalArgumentException("Неверный формат ввода данных");
-    }
 }

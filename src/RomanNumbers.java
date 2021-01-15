@@ -53,36 +53,15 @@ public enum RomanNumbers {
         }
         return sb.toString();
     }
-
-    public static void operations(String number1, String operand, String number2) {
-        if ((romanToArab(number1) <= 0) || (romanToArab(number2) <= 0) || (romanToArab(number1) > 10) ||
-                romanToArab(number2) > 10)
-            throw new IllegalArgumentException("Введенное число выходит за диапазон (0; 10]");
-        else {
-            switch (operand) {
-                case ("+"): {
-                    int b = romanToArab(number1) + romanToArab(number2);
-                    System.out.println(arabToRoman(b));
-                    break;
-                }
-                case ("-"): {
-                    int b = romanToArab(number1) - romanToArab(number2);
-                    System.out.println(arabToRoman(b));
-                    break;
-                }
-                case ("/"): {
-                    int b = romanToArab(number1) / romanToArab(number2);
-                    System.out.println(arabToRoman(b));
-                    break;
-                }
-                case ("*"): {
-                    int b = romanToArab(number1) * romanToArab(number2);
-                    System.out.println(arabToRoman(b));
-                    break;
-                }
-                default:
-                    System.out.println("Неверный операнд");
-            }
+    public static String sample (String input){
+        String[] numbers = input.split(" ");
+        if((Character.isDigit(numbers[0].charAt(0))) && (Character.isDigit(numbers[2].charAt(0)))){
+            return ArabicNumbers.calculate(numbers[0], numbers[1], numbers[2]);
         }
+        else if(!(Character.isDigit(numbers[0].charAt(0))) && !(Character.isDigit(numbers[2].charAt(0))))
+            return arabToRoman(Integer.parseInt(ArabicNumbers.calculate(String.valueOf(romanToArab(numbers[0])),
+                    numbers[1], String.valueOf(romanToArab(numbers[2])))));
+        else
+            throw new IllegalArgumentException("Неверный формат ввода данных");
     }
 }
